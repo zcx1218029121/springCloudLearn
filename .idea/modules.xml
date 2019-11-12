@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/clould-auth/clould-auth.iml" filepath="$PROJECT_DIR$/clould-auth/clould-auth.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
       <module fileurl="file://$PROJECT_DIR$/loafer-cloud/loafer-cloud.iml" filepath="$PROJECT_DIR$/loafer-cloud/loafer-cloud.iml" />
       <module fileurl="file://$PROJECT_DIR$/register/register.iml" filepath="$PROJECT_DIR$/register/register.iml" />

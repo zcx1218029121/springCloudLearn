@@ -21,6 +21,8 @@ import javax.annotation.Resource;
 
 /**
  * @author zcx
+ * <p>
+ * 验证服务器配置
  */
 @Configuration
 @EnableAuthorizationServer
@@ -41,6 +43,8 @@ public class MyAuthorizationServerConfigurer extends AuthorizationServerConfigur
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+        // 服务权限验证配置
+
         clients.inMemory()
 
                 .withClient("febs")
@@ -59,12 +63,22 @@ public class MyAuthorizationServerConfigurer extends AuthorizationServerConfigur
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
-        endpoints.tokenStore(tokenStore())
-
+        endpoints
+                // 配置springToken 的存储方式 默认springToken 是存储在内存中的
+                // 配置用redis来储存 token
+                .tokenStore(tokenStore())
+                // 配置springSecurity 的认证方式
                 .userDetailsService(myUserDetailService)
-
+                /*
+                 * ① AbstractAuthenticationProcessingFilter 基于收到的身份信息（用户名、密码）构造一个 Authentication 对象；
+                 * ② AbstractAuthenticationProcessingFilter 将 Authentication 传递给 AuthenticationManager；
+                 * ③ AuthenticationManager 有一个 AuthenticationProvider 列表，将 Authentication 委托给列表中的 AuthenticationProvider 处理认证请求；
+                 * ④ AuthenticationProvider 依次对 Authentication 进行认证处理，如果认证不通过则抛出一个异常（注意对抛出的异常有类型要求）或直接返回 null，如果所有 AuthenticationProvider 都返回 null，则 AuthenticationManager 抛出 ProviderNotFoundException 异常；
+                 * ⑤ 如果认证通过会返回一个填充完全的 Authentication，这个对象最终会被放入 SecurityContextHolder，后续用于授权功能。
+                 *
+                 */
                 .authenticationManager(authenticationManager)
-
+                // token 储存方式
                 .tokenServices(defaultTokenServices());
     }
 

@@ -1,0 +1,38 @@
+server:
+  port: 8301
+spring:
+  application:
+    name: "cloud-gateway"
+  redis:
+    database: 0
+    host: 39.108.184.171
+    port: 6379
+    password: adminadmin
+
+eureka:
+  instance:
+    # 服务器心跳间隔 为20
+    lease-renewal-interval-in-seconds: 20
+  client:
+    # 注册到微服务中心
+    register-with-eureka: true
+    # 为true时表示从Eureka 服务端获取注册的服务信息
+    fetch-registry: true
+    # 新实例信息的变化到Eureka服务端的间隔时间，单位为秒
+    instance-info-replication-interval-seconds: 30
+    # 指定为3秒的原因是方便开发时测试，实际可以指定为默认值即可
+    registry-fetch-interval-seconds: 3
+    serviceUrl:
+      defaultZone: http://admin:123456@localhost:8001/register/eureka/
+zuul:
+  routes:
+    auth:
+      path: "/auth/**"
+      serviceId: cloud-auth
+      sensitiveHeaders: "*"
+  retryable: true
+  ignored-services: "*"
+  ribbon:
+    eager-load:
+      enabled: true
+

@@ -13,6 +13,7 @@
         <module>../register</module>
         <module>../clould-auth</module>
         <module>../cloud-gateway</module>
+        <module>../server</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

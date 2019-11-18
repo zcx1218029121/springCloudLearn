@@ -1,7 +1,6 @@
 package com.zcx.clouldauth.configure;
 
 import com.zcx.clouldauth.service.MyUserDetailService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -21,7 +20,6 @@ import javax.annotation.Resource;
 
 /**
  * @author zcx
- * <p>
  * 验证服务器配置
  */
 @Configuration

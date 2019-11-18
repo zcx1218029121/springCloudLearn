@@ -8,6 +8,8 @@
       <list>
         <option value="$PROJECT_DIR$/loafer-cloud/pom.xml" />
         <option value="$PROJECT_DIR$/clould-auth/pom.xml" />
+        <option value="$PROJECT_DIR$/server/pom.xml" />
+        <option value="$PROJECT_DIR$/server/server-test/pom.xml" />
       </list>
     </option>
   </component>

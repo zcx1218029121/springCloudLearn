@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/cloud-gateway/cloud-gateway.iml" filepath="$PROJECT_DIR$/cloud-gateway/cloud-gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/clould-auth/clould-auth.iml" filepath="$PROJECT_DIR$/clould-auth/clould-auth.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
       <module fileurl="file://$PROJECT_DIR$/loafer-cloud/loafer-cloud.iml" filepath="$PROJECT_DIR$/loafer-cloud/loafer-cloud.iml" />
       <module fileurl="file://$PROJECT_DIR$/register/register.iml" filepath="$PROJECT_DIR$/register/register.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server/server.iml" filepath="$PROJECT_DIR$/server/server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server/server-system/server-system.iml" filepath="$PROJECT_DIR$/server/server-system/server-system.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server/server-test/server-test.iml" filepath="$PROJECT_DIR$/server/server-test/server-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/springCloudLearn.iml" filepath="$PROJECT_DIR$/.idea/springCloudLearn.iml" />
     </modules>
   </component>

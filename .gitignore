@@ -1,0 +1,40 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+### VS Code ###
+.vscode/
+将删除 server/server-system/.gitignore
+将删除 server/server-system/.mvn/
+将删除 server/server-system/pom.xml
+将删除 server/server-system/src/main/java/com/zcx/server/system/ServerSystemApplication.java
+将删除 server/server-system/src/main/resources/
+将删除 server/server-test/.mvn/
+将删除 server/server-test/pom.xml
+将删除 server/server-test/src/main/java/com/zcx/server/test/ServerTestApplication.java
+将删除 server/server-test/src/main/resources/

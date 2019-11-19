@@ -2,7 +2,7 @@ server:
   port: 8301
 spring:
   application:
-    name: FEBS-Gateway
+    name: Gateway
 eureka:
   instance:
     lease-renewal-interval-in-seconds: 20

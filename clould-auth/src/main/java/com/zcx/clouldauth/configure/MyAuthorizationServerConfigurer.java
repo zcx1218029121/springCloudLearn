@@ -1,12 +1,19 @@
 package com.zcx.clouldauth.configure;
 
+import com.netflix.discovery.util.StringUtil;
+import com.zcx.clouldauth.properties.AuthProperties;
+import com.zcx.clouldauth.properties.ClientsProperties;
 import com.zcx.clouldauth.service.MyUserDetailService;
+import com.zcx.clouldauth.translator.MyWebResponseExceptionTranslator;
+import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.config.annotation.builders.InMemoryClientDetailsServiceBuilder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -17,6 +24,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
 
 /**
  * @author zcx
@@ -38,20 +46,31 @@ public class MyAuthorizationServerConfigurer extends AuthorizationServerConfigur
 
     private PasswordEncoder passwordEncoder;
 
+    @Resource
+    private AuthProperties authProperties;
+
+
+    @Resource
+    private MyWebResponseExceptionTranslator myWebResponseExceptionTranslator;
+
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         // 服务权限验证配置
-
-        clients.inMemory()
-
-                .withClient("febs")
-
-                .secret(passwordEncoder.encode("123456"))
-
-                .authorizedGrantTypes("password", "refresh_token")
-
-                .scopes("all");
+        ClientsProperties[] clientsArray = authProperties.getClients();
+        InMemoryClientDetailsServiceBuilder builder = clients.inMemory();
+        if (ArrayUtils.isEmpty(clientsArray)) {
+            return;
+        }
+        Arrays.stream(clientsArray)
+                .filter(i -> StringUtils.isNotBlank(i.getClient()) && StringUtils.isNotBlank(i.getSecret()))
+                .forEach(client -> {
+                    String[] grantTypes = StringUtils.splitByWholeSeparatorPreserveAllTokens(client.getGrantType(), ",");
+                    builder.withClient(client.getClient())
+                            .secret(passwordEncoder.encode(client.getSecret()))
+                            .authorizedGrantTypes(grantTypes)
+                            .scopes(client.getScope());
+                });
     }
 
     @Override
@@ -77,7 +96,9 @@ public class MyAuthorizationServerConfigurer extends AuthorizationServerConfigur
                  */
                 .authenticationManager(authenticationManager)
                 // token 储存方式
-                .tokenServices(defaultTokenServices());
+                .tokenServices(defaultTokenServices())
+                .exceptionTranslator(myWebResponseExceptionTranslator)
+        ;
     }
 
     @Bean

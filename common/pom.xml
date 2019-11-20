@@ -44,6 +44,12 @@
             <optional>true</optional>
         </dependency>
 
+        <!-- feign !-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+
         <!-- redis  !-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -52,12 +58,15 @@
 
         <!-- eureka 服务端 !-->
         <dependency>
-
             <groupId>org.springframework.cloud</groupId>
-
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-
+        </dependency>
+        <!-- hystrix熔断机制-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
         </dependency>
     </dependencies>
+
 
 </project>

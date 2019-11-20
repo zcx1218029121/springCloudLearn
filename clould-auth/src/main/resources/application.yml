@@ -5,9 +5,9 @@ spring:
     name: "cloud-auth"
   redis:
     database: 1
-    host: 39.108.184.171
+    host: 120.79.55.82
     port: 6379
-    password: adminadmin
+    password:
 
 eureka:
   instance:
@@ -24,6 +24,3 @@ eureka:
     registry-fetch-interval-seconds: 3
     serviceUrl:
       defaultZone: http://admin:123456@localhost:8001/register/eureka/
-zcx:
-  auth:
-    accessTokenValiditySeconds: 11111

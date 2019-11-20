@@ -1,6 +1,5 @@
 package com.zcx.clouldauth.configure;
 
-import com.netflix.discovery.util.StringUtil;
 import com.zcx.clouldauth.properties.AuthProperties;
 import com.zcx.clouldauth.properties.ClientsProperties;
 import com.zcx.clouldauth.service.MyUserDetailService;
@@ -78,6 +77,7 @@ public class MyAuthorizationServerConfigurer extends AuthorizationServerConfigur
         super.configure(security);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         endpoints

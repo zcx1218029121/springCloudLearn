@@ -1,5 +1,6 @@
 package com.zcx.server.test;
 
+import com.zcx.common.annotation.EnableServerProtect;
 import com.zcx.common.annotation.EnableZcxAuthExceptionHandler;
 import com.zcx.common.annotation.EnableZcxOAuth2FeignConfigure;
 import org.springframework.boot.SpringApplication;
@@ -16,6 +17,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 
 @EnableZcxOAuth2FeignConfigure
 @EnableFeignClients
+@EnableServerProtect
 @EnableZcxAuthExceptionHandler
 @SpringBootApplication
 @EnableDiscoveryClient

@@ -1,5 +1,6 @@
 package com.zcx.server.system;
 
+import com.zcx.common.annotation.EnableServerProtect;
 import com.zcx.common.annotation.EnableZcxAuthExceptionHandler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,6 +12,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
  * @author zcx
  */
 @EnableZcxAuthExceptionHandler
+@EnableServerProtect
 @EnableDiscoveryClient
 @SpringBootApplication
 @EnableGlobalMethodSecurity(prePostEnabled = true)

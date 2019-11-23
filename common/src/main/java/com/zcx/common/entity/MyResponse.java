@@ -1,7 +1,5 @@
 package com.zcx.common.entity;
 
-import com.sun.org.apache.regexp.internal.RE;
-
 import java.util.HashMap;
 
 public class MyResponse extends HashMap<String, Object> {

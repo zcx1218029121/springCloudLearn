@@ -1,5 +1,6 @@
 package com.zcx.clouldauth.configure;
 import com.zcx.clouldauth.service.MyUserDetailService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,13 +23,8 @@ public class MySecurityConfigure extends WebSecurityConfigurerAdapter {
     @Resource
     private MyUserDetailService userDetailService;
 
-    @Bean
-
-    public PasswordEncoder passwordEncoder() {
-
-        return new BCryptPasswordEncoder();
-
-    }
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     @Bean
@@ -63,7 +59,7 @@ public class MySecurityConfigure extends WebSecurityConfigurerAdapter {
 
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-        auth.userDetailsService(userDetailService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userDetailService).passwordEncoder(passwordEncoder);
 
     }
 }

@@ -57,6 +57,13 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.1.2</version>
+        </dependency>
+
+
         <!-- eureka 服务端 !-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

@@ -40,6 +40,7 @@ eureka:
       defaultZone: http://admin:123456@localhost:8001/register/eureka/
 mybatis-plus:
   type-aliases-package: com.zcx.common.entity.system
+  # 设置 mapper 的位置
   mapper-locations: classpath:mapper/*.xml
   configuration:
     jdbc-type-for-null: null

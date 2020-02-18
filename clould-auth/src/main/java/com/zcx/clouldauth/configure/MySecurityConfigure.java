@@ -1,4 +1,5 @@
 package com.zcx.clouldauth.configure;
+import com.zcx.clouldauth.filter.ValidateCodeFilter;
 import com.zcx.clouldauth.service.MyUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -10,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.annotation.Resource;
 
@@ -19,6 +21,8 @@ import javax.annotation.Resource;
 @Order(2)
 @EnableWebSecurity
 public class MySecurityConfigure extends WebSecurityConfigurerAdapter {
+    @Autowired
+    private ValidateCodeFilter validateCodeFilter;
 
     @Resource
     private MyUserDetailService userDetailService;
@@ -39,7 +43,8 @@ public class MySecurityConfigure extends WebSecurityConfigurerAdapter {
 
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.requestMatchers()
+        http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
+                .requestMatchers()
 
                 .antMatchers("/oauth/**")
 

@@ -4,7 +4,7 @@ spring:
   application:
     name: "service-test"
   autoconfigure:
-    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+    exclude: com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration
 eureka:
   instance:
     lease-renewal-interval-in-seconds: 20

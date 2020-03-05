@@ -1,6 +1,9 @@
 server:
   port: 8201
 spring:
+  datasource:
+    dynamic:
+      p6spy: true
   application:
     name: "service-system"
   autoconfigure:

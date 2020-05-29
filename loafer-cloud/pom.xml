@@ -15,6 +15,7 @@
         <module>../cloud-gateway</module>
         <module>../server</module>
     </modules>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -23,6 +24,10 @@
     </parent>
     <packaging>pom</packaging>
     <properties>
+        <!--lombok 版本号 -->
+        <lombok.version>1.18.12</lombok.version>
+        <!-- sentinel 版本号 -->
+        <sentinel.version>1.6.3</sentinel.version>
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
     </properties>
     <dependencyManagement>

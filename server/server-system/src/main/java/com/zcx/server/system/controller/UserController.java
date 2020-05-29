@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import java.beans.Transient;
 import java.util.Map;
 
 @Slf4j
@@ -32,7 +33,7 @@ public class UserController {
         Map<String, Object> dataTable = ZcxUtil.getDataTable(userService.findUserDetail(user, queryRequest));
         return new MyResponse().data(dataTable);
     }
-
+    @Transient
     @PostMapping
     @PreAuthorize("hasAnyAuthority('user:add')")
     public void addUser(@Valid SystemUser user) throws MyException{
@@ -40,6 +41,7 @@ public class UserController {
             this.userService.createUser(user);
         } catch (Exception e) {
             String message = "新增用户失败";
+            e.printStackTrace();
             log.error(message, e);
             throw new MyException(message);
         }

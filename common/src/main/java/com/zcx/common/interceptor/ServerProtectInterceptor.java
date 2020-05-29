@@ -3,6 +3,7 @@ package com.zcx.common.interceptor;
 import com.alibaba.fastjson.JSONObject;
 import com.zcx.common.entity.MyResponse;
 import com.zcx.common.entity.ZcxConstant;
+import com.zcx.common.util.TokenC;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.http.MediaType;
 import org.springframework.util.Base64Utils;
@@ -20,13 +21,11 @@ public class ServerProtectInterceptor implements HandlerInterceptor {
 
     /**
      * 拦截 所有请求
-     *
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String token = request.getHeader(ZcxConstant.ZUUL_TOKEN_HEADER);
-        String zuulToken = new String(Base64Utils.encode(ZcxConstant.ZUUL_TOKEN_VALUE.getBytes()));
-        if (StringUtils.equals(zuulToken, token)) {
+        if (TokenC.validZuulToken(token)) {
             return true;
         } else {
             MyResponse febsResponse = new MyResponse();

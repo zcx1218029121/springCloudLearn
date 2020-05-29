@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -44,6 +46,7 @@ public class SystemUser implements Serializable {
     /**
      * 用户名
      */
+    @Size(min = 4, max = 10, message = "长度不合法")
     @TableField("USERNAME")
     private String username;
 
@@ -62,12 +65,14 @@ public class SystemUser implements Serializable {
     /**
      * 邮箱
      */
+    @Email(message = "不合法的邮箱")
     @TableField("EMAIL")
     private String email;
 
     /**
      * 联系电话
      */
+
     @TableField("MOBILE")
     private String mobile;
 

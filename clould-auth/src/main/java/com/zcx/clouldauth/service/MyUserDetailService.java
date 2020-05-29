@@ -31,7 +31,6 @@ public class MyUserDetailService implements UserDetailsService {
     private UserManager userManager;
 
     @Override
-
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         SystemUser systemUser = userManager.findUserByName(username);
         if (systemUser != null) {
@@ -46,7 +45,7 @@ public class MyUserDetailService implements UserDetailsService {
             BeanUtils.copyProperties(systemUser, authUser);
             return authUser;
         } else {
-            throw new UsernameNotFoundException("");
+            throw new UsernameNotFoundException("用户名不存在");
         }
 
     }

@@ -3,6 +3,7 @@ package com.zcx.common.entity.system;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+import org.springframework.data.annotation.AccessType;
 
 import java.io.Serializable;
 

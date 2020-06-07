@@ -12,6 +12,7 @@ import com.alibaba.csp.sentinel.adapter.gateway.zuul.fallback.ZuulBlockFallbackM
 import com.alibaba.csp.sentinel.adapter.gateway.zuul.filters.SentinelZuulErrorFilter;
 import com.alibaba.csp.sentinel.adapter.gateway.zuul.filters.SentinelZuulPostFilter;
 import com.alibaba.csp.sentinel.adapter.gateway.zuul.filters.SentinelZuulPreFilter;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.netflix.zuul.ZuulFilter;
 import com.zcx.cloudgateway.fallback.GatewayBlockFallbackProvider;
 import lombok.extern.slf4j.Slf4j;
@@ -56,6 +57,7 @@ public class GatewaySentinelFilter {
     /**
      * 初始化限流规则
      */
+    @SentinelResource()
     private void  initGatewayRules(){
 
             Set<ApiDefinition> definitions = new HashSet<>();

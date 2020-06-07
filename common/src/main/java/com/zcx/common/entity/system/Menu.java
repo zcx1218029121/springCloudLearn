@@ -9,7 +9,7 @@ import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
 
-@Data
+
 @TableName("t_menu")
 public class Menu implements Serializable {
 
@@ -88,5 +88,17 @@ public class Menu implements Serializable {
 
     private transient String createTimeFrom;
     private transient String createTimeTo;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public void setComponent(String component) {
+        this.component = component;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
 }
 

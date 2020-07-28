@@ -14,6 +14,7 @@
         <module>../clould-auth</module>
         <module>../cloud-gateway</module>
         <module>../server</module>
+        <module>../monitor</module>
     </modules>
 
     <parent>

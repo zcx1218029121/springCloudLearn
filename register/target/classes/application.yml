@@ -9,6 +9,27 @@ spring:
     user:
       name: admin
       password: 123456
+  boot:
+    admin:
+      client:
+        url: http://localhost:8401
+        password: 123456
+        username: febs
+info:
+  app:
+    name: ${spring.application.name}
+    description: "微服务注册中心"
+    version: "0.0.1-SNAPSHOT"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
+
 eureka:
   instance:
     hostname: localhost

@@ -5,6 +5,32 @@ spring:
     name: Gateway
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  boot:
+    admin:
+      client:
+        url: http://localhost:8401
+        username: febs
+        password: 123456
+  security:
+    user:
+      name: admin
+      password: 123456
+info:
+  app:
+    name: ${spring.application.name}
+    description: "@project.description@"
+    version: "@project.version@"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+
 eureka:
   instance:
     lease-renewal-interval-in-seconds: 20
@@ -37,3 +63,4 @@ zuul:
   host:
     connect-timeout-millis: 5000
     socket-timeout-millis: 5000
+

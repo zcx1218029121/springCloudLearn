@@ -35,6 +35,9 @@ public class MyServerSystemResourceServerConfigure extends ResourceServerConfigu
     public void configure(HttpSecurity http) throws Exception {
         String[] anonUrls = StringUtils.splitByWholeSeparatorPreserveAllTokens(properties.getAnonUrl(), ",");
         http.csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/actuator/**").permitAll()
+                .and()
                 .requestMatchers().antMatchers("/**")
                 .and()
                 .authorizeRequests()

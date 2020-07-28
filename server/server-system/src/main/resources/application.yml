@@ -14,15 +14,38 @@ spring:
       datasource:
         base:
           username: root
-          password: 123456
+          password: "*SteDu6WF^isQ09$"
           driver-class-name: com.mysql.cj.jdbc.Driver
-          url: jdbc:mysql://120.79.55.82:3307/cloud_base?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8
+          url: jdbc:mysql://localhost:3306/cloud_base?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8
       p6spy: true
+
+
 
   application:
     name: "service-system"
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  boot:
+    admin:
+      client:
+        url: http://localhost:8401
+        password: 123456
+        username: febs
+info:
+  app:
+    name: ${spring.application.name}
+    description: "@project.description@"
+    version: "@project.version@"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
+
 eureka:
   instance:
     lease-renewal-interval-in-seconds: 20

@@ -28,7 +28,7 @@ public class TestController {
 
 
     @GetMapping("hello")
-    public String hello(@RequestParam("name")String name){
+    public String hello(@RequestParam("name") String name) {
         return iHelloService.hello(name);
     }
 

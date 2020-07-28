@@ -3,14 +3,12 @@ package com.zcx.clouldauth.service;
 import com.zcx.common.entity.AuthUser;
 import com.zcx.common.entity.system.SystemUser;
 import com.zcx.clouldauth.manager.UserManager;
-import com.zcx.clouldauth.mapper.UserMapper;
 import org.apache.commons.codec.binary.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,11 +19,6 @@ import javax.annotation.Resource;
 @Service
 public class MyUserDetailService implements UserDetailsService {
 
-    @Resource
-    private PasswordEncoder passwordEncoder;
-
-    @Resource
-    private UserMapper userMapper;
 
     @Resource
     private UserManager userManager;

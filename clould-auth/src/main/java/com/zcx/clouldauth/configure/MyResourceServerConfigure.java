@@ -27,14 +27,10 @@ public class MyResourceServerConfigure extends ResourceServerConfigurerAdapter {
 
         String[] anonUrls = StringUtils.splitByWholeSeparatorPreserveAllTokens(properties.getAnonUrl(), ",");
         http.csrf().disable()
-
                 .requestMatchers().antMatchers("/**")
-
                 .and()
-
                 .authorizeRequests()
                 .antMatchers(anonUrls).permitAll()
-
                 .antMatchers("/**").authenticated();
     }
 

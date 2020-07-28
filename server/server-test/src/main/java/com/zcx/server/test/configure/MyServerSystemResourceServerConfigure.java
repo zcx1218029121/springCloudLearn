@@ -26,6 +26,8 @@ public class MyServerSystemResourceServerConfigure extends ResourceServerConfigu
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().requestMatchers().antMatchers("/**")
+                .and().authorizeRequests()
+                .antMatchers("/actuator/**").permitAll()
                 .and()
                 .authorizeRequests()
                 .antMatchers("/**").authenticated();

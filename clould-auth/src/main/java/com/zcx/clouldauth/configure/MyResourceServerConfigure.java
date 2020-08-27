@@ -14,6 +14,7 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 
 /**
  * @author zcx
+ * 资源服务器授权认证
  */
 @Configuration
 @EnableResourceServer
@@ -31,7 +32,10 @@ public class MyResourceServerConfigure extends ResourceServerConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(anonUrls).permitAll()
-                .antMatchers("/**").authenticated();
+                .antMatchers("/**")
+                .authenticated()
+                .and()
+                .httpBasic();
     }
 
 

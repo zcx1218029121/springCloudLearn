@@ -104,8 +104,6 @@ public class ZcxGatewayRequestFilter extends ZuulFilter {
             }
             return null;
         }
-
-
         byte[] token = Base64Utils.encode((ZcxConstant.ZUUL_TOKEN_VALUE).getBytes());
         ctx.addZuulRequestHeader(ZcxConstant.ZUUL_TOKEN_HEADER, new String(token));
         return null;

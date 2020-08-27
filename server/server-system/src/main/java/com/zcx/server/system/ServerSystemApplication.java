@@ -21,7 +21,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @MapperScan("com.zcx.server.system.mapper")
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ServerSystemApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(ServerSystemApplication.class, args);
     }

@@ -13,7 +13,7 @@ spring:
     exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 eureka:
   instance:
-    hostname: localhost
+    hostname: ${febs-register}
   client:
     register-with-eureka: false # 是否注册到微服务中心
     fetch-registry: false

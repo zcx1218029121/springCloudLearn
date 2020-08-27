@@ -12,9 +12,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class CloudGatewaySecurityConfigure extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .authorizeRequests().antMatchers("/actuator/**").permitAll();
-        super.configure(http);
+        http.csrf()
+                .ignoringAntMatchers("/eureka/**")
+                .and()
+                .authorizeRequests().antMatchers("/actuator/**").permitAll().and().csrf().disable();
     }
 
     @Override

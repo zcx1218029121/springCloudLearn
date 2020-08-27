@@ -30,6 +30,7 @@
         <!-- sentinel 版本号 -->
         <sentinel.version>1.6.3</sentinel.version>
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
+        <ip2region.version>1.7</ip2region.version>
     </properties>
     <dependencyManagement>
         <dependencies>

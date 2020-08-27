@@ -1,6 +1,17 @@
 server:
   port: 8201
 spring:
+  zipkin:
+    sender:
+      type: rabbit
+  sleuth:
+    sampler:
+      probability: 1
+  rabbitmq:
+    host: ${rabbitmq.url}
+    port: 5672
+    username: febs
+    password: 123456
   datasource:
     dynamic:
       hikari:
@@ -16,19 +27,17 @@ spring:
           username: root
           password: "*SteDu6WF^isQ09$"
           driver-class-name: com.mysql.cj.jdbc.Driver
-          url: jdbc:mysql://localhost:3306/cloud_base?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8
+          url: jdbc:mysql://${mysql.url}:3306/cloud_base?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8
       p6spy: true
-
-
 
   application:
     name: "service-system"
   autoconfigure:
-    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+    exclude: org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
   boot:
     admin:
       client:
-        url: http://localhost:8401
+        url: http://${febs-monitor-admin}:8401
         password: 123456
         username: febs
 info:
@@ -59,11 +68,11 @@ eureka:
 
     serviceUrl:
 
-      defaultZone: http://admin:123456@localhost:8001/register/eureka/
+      defaultZone: http://admin:123456@${febs-register}:8001/register/eureka/
 security:
   oauth2:
     resource:
       id: ${spring.application.name}
-      user-info-uri: http://localhost:8301/auth/user
+      user-info-uri: http://${febs-gateway}:8301/auth/user
 mybatis-plus:
   mapper-locations: classpath:mapper/*/*.xml

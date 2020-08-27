@@ -4,30 +4,108 @@ package com.zcx.common.entity;
  * @author zcx
  * 全局常量类
  */
-public class ZcxConstant {
+public interface ZcxConstant {
 
 
     /**
      * Zuul请求头TOKEN名称（不要有空格）
      */
-    public static final String ZUUL_TOKEN_HEADER = "ZuulToken";
+    String ZUUL_TOKEN_HEADER = "ZuulToken";
     /**
      * Zuul请求头TOKEN值
      */
-    public static final String ZUUL_TOKEN_VALUE = "zcx:zuul:123456";
+    String ZUUL_TOKEN_VALUE = "zcx:zuul:123456";
 
     /**
      * gif类型
      */
-    public static final String GIF = "gif";
+    String GIF = "gif";
     /**
      * png类型
      */
-    public static final String PNG = "png";
+    String PNG = "png";
 
     /**
      * 验证码 key前缀
      */
     public static final String CODE_PREFIX = "zcx.captcha.";
+    /**
+     * 排序规则：降序
+     */
+    String ORDER_DESC = "descending";
+    /**
+     * 排序规则：升序
+     */
+    String ORDER_ASC = "ascending";
 
+    interface PageConstant {
+        String ROWS = "rows";
+        String TOTAL = "total";
+    }
+
+    interface StringConstant {
+        String AMPERSAND = "&";
+        String AND = "and";
+        String AT = "@";
+        String ASTERISK = "*";
+        String STAR = "*";
+        String BACK_SLASH = "\\";
+        String COLON = ":";
+        String DOUBLE_COLON = "::";
+        String COMMA = ",";
+        String DASH = "-";
+        String DOLLAR = "$";
+        String DOT = ".";
+        String UNDER_LINE = "_";
+        String DOUBLE_DOT = "..";
+        String DOT_CLASS = ".class";
+        String DOT_JAVA = ".java";
+        String DOT_XML = ".xml";
+        String EMPTY = "";
+        String EQUALS = "=";
+        String FALSE = "false";
+        String SLASH = "/";
+        String HASH = "#";
+        String HAT = "^";
+        String LEFT_BRACE = "{";
+        String LEFT_BRACKET = "(";
+        String LEFT_CHEV = "<";
+        String DOT_NEWLINE = ",\n";
+        String NEWLINE = "\n";
+        String N = "n";
+        String NO = "no";
+        String NULL = "null";
+        String OFF = "off";
+        String ON = "on";
+        String PERCENT = "%";
+        String PIPE = "|";
+        String PLUS = "+";
+        String QUESTION_MARK = "?";
+        String EXCLAMATION_MARK = "!";
+        String QUOTE = "\"";
+        String RETURN = "\r";
+        String TAB = "\t";
+        String RIGHT_BRACE = "}";
+        String RIGHT_BRACKET = ")";
+        String RIGHT_CHEV = ">";
+        String SEMICOLON = ";";
+        String SINGLE_QUOTE = "'";
+        String BACKTICK = "`";
+        String SPACE = " ";
+        String TILDA = "~";
+        String LEFT_SQ_BRACKET = "[";
+        String RIGHT_SQ_BRACKET = "]";
+        String TRUE = "true";
+        String UNDERSCORE = "_";
+        String UTF_8 = "UTF-8";
+        String US_ASCII = "US-ASCII";
+        String ISO_8859_1 = "ISO-8859-1";
+        String Y = "y";
+        String YES = "yes";
+        String ONE = "1";
+        String ZERO = "0";
+        String DOLLAR_LEFT_BRACE = "${";
+        String HASH_LEFT_BRACE = "#{";
+        String CRLF = "\r\n";
+    }
 }

@@ -13,6 +13,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import java.beans.Transient;
@@ -33,10 +34,11 @@ public class UserController {
         Map<String, Object> dataTable = ZcxUtil.getDataTable(userService.findUserDetail(user, queryRequest));
         return new MyResponse().data(dataTable);
     }
+
     @Transient
     @PostMapping
     @PreAuthorize("hasAnyAuthority('user:add')")
-    public void addUser(@Valid SystemUser user) throws MyException{
+    public void addUser(@Valid SystemUser user) throws MyException {
         try {
             this.userService.createUser(user);
         } catch (Exception e) {
@@ -61,7 +63,7 @@ public class UserController {
 
     @DeleteMapping("/{userIds}")
     @PreAuthorize("hasAnyAuthority('user:delete')")
-    public void deleteUsers(@NotBlank(message = "{required}") @PathVariable String userIds) throws MyException{
+    public void deleteUsers(@NotBlank(message = "{required}") @PathVariable String userIds) throws MyException {
         try {
             String[] ids = userIds.split(StringPool.COMMA);
             this.userService.deleteUsers(ids);
@@ -71,4 +73,10 @@ public class UserController {
             throw new MyException(message);
         }
     }
+
+    @GetMapping("success")
+    public void loginSuccess(HttpServletRequest request) {
+
+    }
+
 }

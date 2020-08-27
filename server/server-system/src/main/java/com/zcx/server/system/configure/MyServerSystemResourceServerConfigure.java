@@ -43,7 +43,8 @@ public class MyServerSystemResourceServerConfigure extends ResourceServerConfigu
                 .authorizeRequests()
                 .antMatchers(anonUrls)
                 .permitAll()
-                .antMatchers("/**").authenticated();
+                .antMatchers("/**")
+                .authenticated();
     }
 
     @Override

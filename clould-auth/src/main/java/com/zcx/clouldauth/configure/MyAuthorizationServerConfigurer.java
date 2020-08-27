@@ -91,8 +91,7 @@ public class MyAuthorizationServerConfigurer extends AuthorizationServerConfigur
                  * ② AbstractAuthenticationProcessingFilter 将 Authentication 传递给 AuthenticationManager；
                  * ③ AuthenticationManager 有一个 AuthenticationProvider 列表，将 Authentication 委托给列表中的 AuthenticationProvider 处理认证请求；
                  * ④ AuthenticationProvider 依次对 Authentication 进行认证处理，如果认证不通过则抛出一个异常（注意对抛出的异常有类型要求）或直接返回 null，如果所有 AuthenticationProvider 都返回 null，则 AuthenticationManager 抛出 ProviderNotFoundException 异常；
-                 * ⑤ 如果认证通过会返回一个填充完全的 Authentication，这个对象最终会被放入 SecurityContextHolder，后续用于授权功能。
-                 *
+                 * ⑤ 如果认证通过会返回一个填充完全的 Authentication，这个对象最终会被放入 SecurityContextHolder，后续用于授权功能
                  */
                 .authenticationManager(authenticationManager)
                 // token 储存方式
@@ -102,7 +101,6 @@ public class MyAuthorizationServerConfigurer extends AuthorizationServerConfigur
     }
 
     @Bean
-
     public TokenStore tokenStore() {
 
         return new RedisTokenStore(redisConnectionFactory);

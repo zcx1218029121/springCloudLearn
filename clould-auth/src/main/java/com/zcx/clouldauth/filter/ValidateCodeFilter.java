@@ -25,6 +25,9 @@ import java.util.Base64;
 
 @Slf4j
 @Component
+/**
+ *
+ */
 public class ValidateCodeFilter extends OncePerRequestFilter {
     @Autowired
     private ValidateCodeService validateCodeService;
@@ -33,6 +36,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
         RequestMatcher matcher = new AntPathRequestMatcher("/oauth/token", HttpMethod.POST.toString());
         String header = httpServletRequest.getHeader("Authorization");
+        logger.error(httpServletRequest);
         String clientId = getClientId(header, httpServletRequest);
 
 
@@ -75,7 +79,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
             String token = new String(decoded, StandardCharsets.UTF_8);
             int delim = token.indexOf(":");
             if (delim != -1) {
-                clientId = new String(token.substring(0, delim));
+                clientId = token.substring(0, delim);
             }
         } catch (Exception ignore) {
             // 只会出 base64解码错误 可以忽略

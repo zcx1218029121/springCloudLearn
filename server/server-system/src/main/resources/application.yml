@@ -25,7 +25,7 @@ spring:
       datasource:
         base:
           username: root
-          password: "*SteDu6WF^isQ09$"
+          password: 123456
           driver-class-name: com.mysql.cj.jdbc.Driver
           url: jdbc:mysql://${mysql.url}:3306/cloud_base?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8
       p6spy: true

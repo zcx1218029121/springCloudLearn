@@ -1,0 +1,87 @@
+version: '3'
+
+services:
+  febs-register:
+    image: febs-register:latest # 指定基础镜像，就是上一节中我们自己构建的镜像
+    container_name: febs-register # 容器名称
+    volumes:
+      - "/febs/log:/log" #日志挂载
+    command:
+      - "--febs-register=192.168.1.113" # 通过command指定地址变量值
+      - "--febs-monitor-admin=192.168.1.113"
+    ports:
+      - 8001:8001 # 端口映射
+  febs-monitor-admin:
+    image: febs-monitor-admin:latest
+    container_name: febs-monitor-admin
+    volumes:
+      - "/febs/log:/log"
+    ports:
+      - 8401:8401
+  febs-gateway:
+    image: febs-gateway:latest
+    container_name: febs-gateway
+    depends_on:
+      - febs-register
+    volumes:
+      - "/febs/log:/log"
+    command:
+      - "--febs-register=192.168.1.113"
+      - "--febs-monitor-admin=192.168.1.113"
+    ports:
+      - 8301:8301
+  febs-auth:
+    image: febs-auth:latest
+    container_name: febs-auth
+    depends_on:
+      - febs-register
+    volumes:
+      - "/febs/log:/log"
+    command:
+      - "--mysql.url=192.168.1.113"
+      - "--redis.url=192.168.1.113"
+      - "--febs-register=192.168.1.113"
+      - "--febs-monitor-admin=192.168.1.113"
+  febs-server-system:
+    image: febs-server-system:latest
+    container_name: febs-server-system
+    depends_on:
+      - febs-register
+    volumes:
+      - "/febs/log:/log"
+    command:
+      - "--mysql.url=192.168.1.113"
+      - "--rabbitmq.url=192.168.1.113"
+      - "--febs-register=192.168.1.113"
+      - "--febs-monitor-admin=192.168.1.113"
+      - "--febs-gateway=192.168.1.113"
+  febs-server-test:
+    image: febs-server-test:latest
+    container_name: febs-server-test
+    depends_on:
+      - febs-register
+    volumes:
+      - "/febs/log:/log"
+    command:
+      - "--mysql.url=192.168.1.113"
+      - "--rabbitmq.url=192.168.1.113"
+      - "--febs-register=192.168.1.113"
+      - "--febs-monitor-admin=192.168.1.113"
+      - "--febs-gateway=192.168.1.113"
+
+  zipkin-server:
+    image: zipkin
+    container_name: zipkin
+    command:
+      - "--server.port=8402"
+      - "--zipkin.storage.type=mysql"
+      - "--zipkin.storage.mysql.db=cloud_base"
+      - "--zipkin.storage.mysql.username=root"
+      - "--zipkin.storage.mysql.password=123456"
+      - "--zipkin.storage.mysql.host=192.168.1.113"
+      - "--zipkin.storage.mysql.port=3306"
+      - "--zipkin.collector.rabbitmq.addresses=192.168.1.113"
+      - "--zipkin.collector.rabbitmq.username=febs"
+      - "--zipkin.collector.rabbitmq.password=123456"
+    ports:
+      - 8402:8402

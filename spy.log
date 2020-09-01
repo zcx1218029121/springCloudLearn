@@ -4098,3 +4098,4 @@
 1598523372638|0|statement|connection 2358|url jdbc:mysql://127.0.0.1:3306/cloud_base?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8|select 1|select 1
 1598523392634|0|statement|connection 2360|url jdbc:mysql://127.0.0.1:3306/cloud_base?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8|select 1|select 1
 1598523412633|0|statement|connection 2362|url jdbc:mysql://127.0.0.1:3306/cloud_base?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8|select 1|select 1
+1598861423530|5|statement|connection 2|url jdbc:mysql://127.0.0.1:3306/cloud_base?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8|select 1|select 1

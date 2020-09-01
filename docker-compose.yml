@@ -20,10 +20,10 @@ services:
     ports:
       - 6379:6379
   rabbitmq:
-    image: rabbitmq:3.7.15-management
+    image: rabbitmq:3.7.7-management
     container_name: rabbitmq
     volumes:
-      - D:/docker/rabbitmq/data:/var/lib/rabbitmq #挂载 RabbitMQ数据
+
       - D:/docker/rabbitmq/log:/var/log/rabbitmq #挂载 RabbitMQ日志
     ports:
       - 5672:5672

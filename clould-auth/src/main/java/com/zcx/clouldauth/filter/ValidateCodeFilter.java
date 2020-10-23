@@ -36,14 +36,16 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
         RequestMatcher matcher = new AntPathRequestMatcher("/oauth/token", HttpMethod.POST.toString());
         String header = httpServletRequest.getHeader("Authorization");
-        logger.error(httpServletRequest);
-        String clientId = getClientId(header, httpServletRequest);
+        httpServletRequest.getRemoteAddr();
+        String clientId = null;
+        if (null != header) {
+            clientId = getClientId(header, httpServletRequest);
+        }
 
 
         if (matcher.matches(httpServletRequest)
                 && StringUtils.equalsIgnoreCase(httpServletRequest.getParameter("grant_type"), "password")
                 && !StringUtils.equalsAnyIgnoreCase(clientId, "swagger")
-
         ) {
             try {
                 validateCode(httpServletRequest);
@@ -82,8 +84,8 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
                 clientId = token.substring(0, delim);
             }
         } catch (Exception ignore) {
+
             // 只会出 base64解码错误 可以忽略
-            ignore.printStackTrace();
         }
         return clientId;
     }

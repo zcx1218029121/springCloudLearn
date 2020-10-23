@@ -2,30 +2,30 @@ server:
   port: 8301
 spring:
   application:
-    name: Gateway
-  autoconfigure:
-    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration,org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+    name: FEBS-Gateway
   boot:
     admin:
       client:
         url: http://${febs-monitor-admin}:8401
         username: febs
         password: 123456
-info:
-  app:
-    name: ${spring.application.name}
-    description: "@project.description@"
-    version: "@project.version@"
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
-  endpoint:
-    health:
-      show-details: ALWAYS
-
+  cloud:
+    gateway:
+      routes:
+        - id: cloud-auth
+          uri: lb://cloud-auth
+          predicates:
+            - Path=/auth/**
+        - id: service-system
+          uri: lb://service-system
+          predicates:
+            - Path=/system/**
+        - id: service-test
+          uri: lb://service-test
+          predicates:
+            - Path=/test/**
+      default-filters:
+        - StripPrefix=1
 
 eureka:
   instance:
@@ -37,26 +37,12 @@ eureka:
     registry-fetch-interval-seconds: 3
     serviceUrl:
       defaultZone: http://admin:123456@${febs-register}:8001/register/eureka/
-zuul:
-  routes:
-    auth:
-      path: "/auth/**"
-      serviceId: cloud-auth
-      sensitiveHeaders: "*"
-    system:
-      path: "/system/**"
-      serviceId: service-system
-      sensitiveHeaders: "*"
-    test:
-      path: "/test/**"
-      serviceId: service-test
-      sensitiveHeaders: "*"
-  retryable: true
-  ignored-services: "*"
-  ribbon:
-    eager-load:
-      enabled: true
-  host:
-    connect-timeout-millis: 5000
-    socket-timeout-millis: 5000
 
+management:
+  endpoint:
+    health:
+      show-details: ALWAYS
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway

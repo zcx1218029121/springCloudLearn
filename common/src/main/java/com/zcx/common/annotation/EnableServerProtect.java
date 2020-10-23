@@ -14,5 +14,6 @@ import java.lang.annotation.*;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Import(ServerProtectConfigure.class)
-public @interface EnableServerProtect {
+public @interface
+EnableServerProtect {
 }

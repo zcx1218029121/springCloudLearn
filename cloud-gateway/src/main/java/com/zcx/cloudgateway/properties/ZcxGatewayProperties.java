@@ -18,7 +18,7 @@ import org.springframework.context.annotation.PropertySource;
 @SpringBootConfiguration
 @PropertySource(value = {"classpath:zcx-gateway.properties"})
 @ConfigurationProperties(prefix = "zcx.gateway")
-public class GatewayProperties {
+public class    ZcxGatewayProperties {
     /**
      * 禁止外部访问的 URI，多个值的话以逗号分隔
      */

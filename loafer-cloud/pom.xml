@@ -7,7 +7,7 @@
     <groupId>com.zcx</groupId>
     <artifactId>loafer-cloud</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <description>微服务验权服务练习</description>
+
     <modules>
         <module>../common</module>
         <module>../register</module>

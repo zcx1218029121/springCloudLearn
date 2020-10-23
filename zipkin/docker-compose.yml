@@ -7,8 +7,8 @@ services:
     volumes:
       - "/febs/log:/log" #日志挂载
     command:
-      - "--febs-register=192.168.1.113" # 通过command指定地址变量值
-      - "--febs-monitor-admin=192.168.1.113"
+      - "--febs-register=192.168.1.108" # 通过command指定地址变量值
+      - "--febs-monitor-admin=192.168.1.108"
     ports:
       - 8001:8001 # 端口映射
   febs-monitor-admin:
@@ -19,15 +19,15 @@ services:
     ports:
       - 8401:8401
   febs-gateway:
-    image: febs-gateway:latest
-    container_name: febs-gateway
+    image: cloud-gateway:latest
+    container_name: cloud-gateway
     depends_on:
       - febs-register
     volumes:
       - "/febs/log:/log"
     command:
-      - "--febs-register=192.168.1.113"
-      - "--febs-monitor-admin=192.168.1.113"
+      - "--febs-register=192.168.1.108"
+      - "--febs-monitor-admin=192.168.1.108"
     ports:
       - 8301:8301
   febs-auth:
@@ -38,10 +38,10 @@ services:
     volumes:
       - "/febs/log:/log"
     command:
-      - "--mysql.url=192.168.1.113"
-      - "--redis.url=192.168.1.113"
-      - "--febs-register=192.168.1.113"
-      - "--febs-monitor-admin=192.168.1.113"
+      - "--mysql.url=192.168.1.108"
+      - "--redis.url=192.168.1.108"
+      - "--febs-register=192.168.1.108"
+      - "--febs-monitor-admin=192.168.1.108"
   febs-server-system:
     image: febs-server-system:latest
     container_name: febs-server-system
@@ -50,11 +50,11 @@ services:
     volumes:
       - "/febs/log:/log"
     command:
-      - "--mysql.url=192.168.1.113"
-      - "--rabbitmq.url=192.168.1.113"
-      - "--febs-register=192.168.1.113"
-      - "--febs-monitor-admin=192.168.1.113"
-      - "--febs-gateway=192.168.1.113"
+      - "--mysql.url=192.168.1.108"
+      - "--rabbitmq.url=192.168.1.108"
+      - "--febs-register=192.168.1.108"
+      - "--febs-monitor-admin=192.168.1.108"
+      - "--febs-gateway=192.168.1.108"
   febs-server-test:
     image: febs-server-test:latest
     container_name: febs-server-test
@@ -63,11 +63,11 @@ services:
     volumes:
       - "/febs/log:/log"
     command:
-      - "--mysql.url=192.168.1.113"
-      - "--rabbitmq.url=192.168.1.113"
-      - "--febs-register=192.168.1.113"
-      - "--febs-monitor-admin=192.168.1.113"
-      - "--febs-gateway=192.168.1.113"
+      - "--mysql.url=192.168.1.108"
+      - "--rabbitmq.url=192.168.1.108"
+      - "--febs-register=192.168.1.108"
+      - "--febs-monitor-admin=192.168.1.108"
+      - "--febs-gateway=192.168.1.108"
 
   zipkin-server:
     image: zipkin
@@ -78,9 +78,9 @@ services:
       - "--zipkin.storage.mysql.db=cloud_base"
       - "--zipkin.storage.mysql.username=root"
       - "--zipkin.storage.mysql.password=123456"
-      - "--zipkin.storage.mysql.host=192.168.1.113"
+      - "--zipkin.storage.mysql.host=192.168.1.108"
       - "--zipkin.storage.mysql.port=3306"
-      - "--zipkin.collector.rabbitmq.addresses=192.168.1.113"
+      - "--zipkin.collector.rabbitmq.addresses=192.168.1.108"
       - "--zipkin.collector.rabbitmq.username=febs"
       - "--zipkin.collector.rabbitmq.password=123456"
     ports:
